@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Form</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        border: 2px solid;
+        border-color: black;
+      }
+      .error {
+        color: red;
+      }
+      .firstName {
+        height: 20px;
+        width: 300px;
+        border-radius: 20px;
+        padding-left: 20px;
+      }
+      .submit {
+        width: 320px;
+        height: 30px;
+        background-color: blue;
+        color: white;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="signup-form">
+      <h1>Signup Form</h1>
+      <label for="firstName">First Name</label> <br />
+
+      <input
+        type="text"
+        class="firstName"
+        name="firstName"
+        required
+        pattern="[A-Za-z]+"
+        title="Only characters are allowed"
+      />
+      <br />
+      <label for="middleName">Middle Name</label> <br />
+      <input
+        type="text"
+        class="firstName"
+        name="middleName"
+        pattern="[A-Za-z]+"
+        title="Only characters are allowed"
+      />
+      <br />
+      <label for="lastName">Last Name</label><br />
+
+      <input
+        type="text"
+        class="firstName"
+        name="lastName"
+        required
+        pattern="[A-Za-z]+"
+        title="Only characters are allowed"
+      />
+      <br />
+      <label for="email">Email</label> <br />
+      <input type="email" class="firstName" name="email" required />
+      <br />
+      <label for="password">Password</label> <br />
+      <input
+        type="password"
+        class="firstName"
+        name="password"
+        required
+        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+        title="Minimum 8 characters, at least 1 letter, 1 number and 1 special character"
+      />
+      <br />
+      <label for="confirmPassword">Confirm Password</label> <br />
+      <input
+        type="password"
+        class="firstName"
+        name="confirmPassword"
+        required
+      />
+      <br />
+      <label for="dob">Date of Birth</label> <br />
+      <input type="date" class="firstName" name="dob" required />
+      <br />
+      <label for="github">GitHub Profile Link</label> <br />
+      <input type="url" class="firstName" name="github" />
+      <br />
+      <label for="linkedin">LinkedIn Profile Link</label> <br />
+      <input type="url" class="firstName" name="linkedin" required />
+      <br />
+      <br />
+      <button type="submit" class="submit">Submit</button>
+    </form>
+
+    <div id="error-toast" class="error" style="display: none">
+      Please fill in all the required fields correctly.
+    </div>
+    <div id="success-toast" style="display: none">Signup successful!</div>
+
+    <script>
+      const form = document.getElementById("signup-form");
+      const errorToast = document.getElementById("error-toast");
+      const successToast = document.getElementById("success-toast");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (form.checkValidity()) {
+          successToast.style.display = "block";
+          errorToast.style.display = "none";
+          setTimeout(() => {
+            successToast.style.display = "none";
+          }, 3000);
+        } else {
+          errorToast.style.display = "block";
+          successToast.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
